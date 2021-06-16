@@ -10,6 +10,7 @@ namespace RecipeExpressIoC
         public static IServiceCollection ConfigureContainer(this IServiceCollection services, IConfiguration configuration)
         {
             DomainModule.Register(services, configuration);
+            DataModules.Register(services, configuration);
             return services;
         }
     }
