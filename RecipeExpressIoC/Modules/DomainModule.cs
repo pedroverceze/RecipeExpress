@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RecipeExpressDomain.Client.Services;
 
 namespace RecipeExpressIoC.Modules
 {
@@ -7,7 +8,7 @@ namespace RecipeExpressIoC.Modules
     {
         public static void Register(this IServiceCollection services, IConfiguration Configuration)
         {
-            // services.AddScoped<IMainDomainService, MainDomainService>();
+            services.AddScoped<IClientService, ClientService>();
         }
     }
 }
