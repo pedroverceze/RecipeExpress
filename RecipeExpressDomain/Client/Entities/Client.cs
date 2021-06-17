@@ -1,4 +1,5 @@
 ﻿using RecipeExpressDomain.Abstract.Entities;
+using RecipeExpressDomain.Recipes.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace RecipeExpressDomain.Client.Entities
         public string Name { get; set; }
         public int Age { get; set; }
         public string Genre { get; set; }
+
+        public ICollection<Recipe> Recipes { get; set; }
     }
 }

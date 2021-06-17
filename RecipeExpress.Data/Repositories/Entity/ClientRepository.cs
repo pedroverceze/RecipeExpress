@@ -4,6 +4,7 @@ using RecipeExpressDomain.Client.Repositories;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace RecipeExpress.Data.Repositories
 {
@@ -26,6 +27,9 @@ namespace RecipeExpress.Data.Repositories
 
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<Client> GetClient(Guid clientId)
+        => await Filter(clientId).FirstOrDefaultAsync();
 
         private IQueryable<Client> Filter(Guid clientId)
             => _dbSet.Where(client => client.ClientId == clientId);

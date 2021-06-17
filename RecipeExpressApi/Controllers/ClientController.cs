@@ -22,11 +22,6 @@ namespace RecipeExpressApi.Controllers
             _clientService = clientService;
         }
 
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         [HttpPost]
         public async Task<IActionResult> Post(Client req)
         {

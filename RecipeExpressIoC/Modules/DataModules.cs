@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using RecipeExpressDomain.Client.Repositories;
 using RecipeExpress.Data.Repositories;
+using RecipeExpressDomain.Recipes.Repositories;
+using RecipeExpress.Data.Repositories.Entity;
 
 namespace RecipeExpressIoC.Modules
 {
@@ -22,7 +24,7 @@ namespace RecipeExpressIoC.Modules
             );
 
             services.AddScoped<IClientRepository, ClientRepository>();
-            
+            services.AddScoped<IRecipeRepository, RecipeRepository>();
         }
 
         private static string GetConnectionString(IConfiguration configuration)

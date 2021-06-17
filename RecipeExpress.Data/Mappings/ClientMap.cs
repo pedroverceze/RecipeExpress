@@ -15,6 +15,8 @@ namespace RecipeExpress.Data.Mappings
         {
             builder.HasKey(c => c.ClientId);
 
+            builder.HasMany(c => c.Recipes).WithOne().HasForeignKey(c => new { c.RecipeId });
+
             builder.Property(c => c.ClientId)
                 .IsRequired()
                 .HasColumnName("client_id");
