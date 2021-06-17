@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RecipeExpressDomain.Client.Repositories;
+using RecipeExpress.Data.Repositories;
 
 namespace RecipeExpressIoC.Modules
 {
@@ -19,7 +21,7 @@ namespace RecipeExpressIoC.Modules
                 options.UseSqlServer(GetConnectionString(configuration))
             );
 
-            //services.AddScoped<IInvestmentCardRepository, InvestmentCardRepository>();
+            services.AddScoped<IClientRepository, ClientRepository>();
             
         }
 

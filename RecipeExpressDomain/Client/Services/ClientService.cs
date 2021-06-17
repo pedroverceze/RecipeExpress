@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RecipeExpressDomain.Client.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,14 +10,19 @@ namespace RecipeExpressDomain.Client.Services
 {
     public class ClientService : IClientService
     {
-        public ClientService()
-        {
+        private readonly IClientRepository _clientRepository;
 
+        public ClientService(IClientRepository clientRepository)
+        {
+            _clientRepository = clientRepository;
         }
 
-        public void EnrollClient(c.Client client)
+        public async Task EnrollClient(c.Client client)
         {
-
+            if(!await _clientRepository.EnrollClient(client))
+            {
+                throw new Exception();
+            }
         }
     }
 }
