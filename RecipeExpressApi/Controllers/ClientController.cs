@@ -30,7 +30,6 @@ namespace RecipeExpressApi.Controllers
         }
 
 
-        //[HttpPost("{clientId, recipeId}")]
         [HttpPatch]
         public async Task<IActionResult> EnrollRecipe(Guid clientId, Guid recipeId)
         {

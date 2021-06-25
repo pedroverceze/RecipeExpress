@@ -1,5 +1,4 @@
-﻿using RecipeExpressDomain.Abstract.Exceptions;
-using RecipeExpressDomain.Ingredients.Documents;
+﻿using RecipeExpressDomain.Ingredients.Documents;
 using RecipeExpressDomain.Ingredients.Exceptions;
 using RecipeExpressDomain.Ingredients.Repositories;
 using System;
@@ -10,6 +9,7 @@ namespace RecipeExpressDomain.Ingredients.Services
     public class IngredientService : IIngredientService
     {
         private readonly IIngredientMongoRepository _ingredientMongoRepository;
+
         public IngredientService(IIngredientMongoRepository ingredientRepository)
         {
             _ingredientMongoRepository = ingredientRepository;
@@ -25,6 +25,13 @@ namespace RecipeExpressDomain.Ingredients.Services
             {
                 throw new FailToInsertIngredientException(ext.Message);
             }
+        }
+
+        public async Task<bool> CheckIngredientExists(string name)
+        {
+            var ingredient = await _ingredientMongoRepository.GetIngredient(name);
+
+            return ingredient.Id != Guid.Empty;
         }
     }
 }
