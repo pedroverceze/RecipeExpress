@@ -64,6 +64,14 @@ namespace RecipeExpress.Data.Repositories.Mongo
             });
         }
 
+        public virtual Task<List<TDocument>> Find()
+        {
+            return Task.Run(() =>
+            {
+                return _collection.Find(_ => true).ToListAsync();
+            });
+        }
+
         public virtual Task InsertOneAsync(TDocument document)
         {
             return Task.Run(() => _collection.InsertOneAsync(document));

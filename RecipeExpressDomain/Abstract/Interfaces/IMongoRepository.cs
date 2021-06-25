@@ -22,6 +22,8 @@ namespace RecipeExpressDomain.Abstract.Interfaces
 
         Task<TDocument> FindByIdAsync(string id);
 
+        Task<List<TDocument>> Find();
+
         Task InsertOneAsync(TDocument document);
 
         Task InsertManyAsync(ICollection<TDocument> documents);

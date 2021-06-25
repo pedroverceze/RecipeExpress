@@ -1,38 +1,36 @@
 ﻿using RecipeExpressDomain.Client.Repositories;
-using RecipeExpressDomain.Recipes.Entities;
+using RecipeExpressDomain.Recipes.Documents;
+using RecipeExpressDomain.Recipes.Exceptions;
 using RecipeExpressDomain.Recipes.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RecipeExpressDomain.Recipes.Services
 {
     public class RecipeService : IRecipeService
     {
-        private readonly IRecipeRepository _recipeRepository;
-        private readonly IClientRepository _clientRepository;
-        public RecipeService(IRecipeRepository recipeRepository,
-                            IClientRepository clientRepository)
+        private readonly IRecipeMongoRepository _recipeMongoRepository;
+        public RecipeService(IRecipeMongoRepository recipeRepository)
         {
-            _recipeRepository = recipeRepository;
-            _clientRepository = clientRepository;
+            _recipeMongoRepository = recipeRepository;
         }
 
-        public async Task EnrollRecipe(Recipe recipe)
+        public async Task EnrollRecipe(RecipeDocument recipe)
         {
-            var client = await _clientRepository.GetClient(recipe.ClientId);
-
-            if(client is null)
+            try
             {
-                throw new Exception("Necessario se cadastrar");
+                await _recipeMongoRepository.InsertRecipe(recipe);
             }
-
-            if (!await _recipeRepository.EnrollRecipe(recipe))
+            catch(Exception ext)
             {
-                throw new Exception();
+                throw new FailToInsertRecipeException(ext.Message);
             }
+        }
+
+        public async Task<List<RecipeDocument>> GetRecipes()
+        {
+            return await _recipeMongoRepository.GetRecipes();
         }
     }
 }

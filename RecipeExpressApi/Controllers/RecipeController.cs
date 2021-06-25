@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using RecipeExpressDomain.Recipes.Entities;
+using RecipeExpressDomain.Recipes.Documents;
 using RecipeExpressDomain.Recipes.Services;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RecipeExpressApi.Controllers
@@ -20,12 +21,20 @@ namespace RecipeExpressApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Recipe req)
+        public async Task<IActionResult> Post(RecipeDocument req)
         {
             _logger.LogInformation("Recebendo requisição...");
             await _recipeService.EnrollRecipe(req);
 
             return CreatedAtAction(nameof(Post), req);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var recipes = await _recipeService.GetRecipes();
+
+            return Ok(recipes);
         }
     }
 }

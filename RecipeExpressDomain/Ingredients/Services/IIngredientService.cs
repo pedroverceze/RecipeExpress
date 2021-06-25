@@ -1,10 +1,11 @@
-﻿using RecipeExpressDomain.Ingredients.Entities;
+﻿using RecipeExpressDomain.Ingredients.Documents;
+using RecipeExpressDomain.Ingredients.Entities;
 using System.Threading.Tasks;
 
 namespace RecipeExpressDomain.Ingredients.Services
 {
     public interface IIngredientService
     {
-        Task EnrollIngredient(Ingredient ingredient);
+        Task EnrollIngredient(IngredientDocument ingredient);
     }
 }
