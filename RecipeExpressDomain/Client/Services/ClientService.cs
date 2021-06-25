@@ -1,4 +1,5 @@
-﻿using RecipeExpressDomain.Client.Repositories;
+﻿using RecipeExpressDomain.Client.Documents;
+using RecipeExpressDomain.Client.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,13 @@ namespace RecipeExpressDomain.Client.Services
     public class ClientService : IClientService
     {
         private readonly IClientRepository _clientRepository;
+        private readonly IClientMongoRepository _clientMongoRepository;
 
-        public ClientService(IClientRepository clientRepository)
+        public ClientService(IClientRepository clientRepository,
+                             IClientMongoRepository clientMongoRepository)
         {
             _clientRepository = clientRepository;
+            _clientMongoRepository = clientMongoRepository;
         }
 
         public async Task EnrollClient(c.Client client)
@@ -23,6 +27,17 @@ namespace RecipeExpressDomain.Client.Services
             {
                 throw new Exception();
             }
+
+            var doc = new ClientDocument
+            {
+                Age = client.Age,
+                CreatedAt = DateTime.Now,
+                Genre = client.Genre,
+                Name = client.Name,
+                Id = client.ClientId
+            };
+
+            await _clientMongoRepository.InsertClient(doc);
         }
     }
 }
