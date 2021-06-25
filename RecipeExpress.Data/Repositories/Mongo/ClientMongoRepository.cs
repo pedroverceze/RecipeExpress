@@ -23,5 +23,10 @@ namespace RecipeExpress.Data.Repositories.Mongo
         {
             await _mongoRepository.InsertOneAsync(document);
         }
+
+        public async Task UpdateClient(ClientDocument document)
+        {
+            await _mongoRepository.ReplaceOneAsync(document);
+        }
     }
 }

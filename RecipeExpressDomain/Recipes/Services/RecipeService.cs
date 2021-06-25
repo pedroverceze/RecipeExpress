@@ -1,5 +1,4 @@
-﻿using RecipeExpressDomain.Client.Repositories;
-using RecipeExpressDomain.Recipes.Documents;
+﻿using RecipeExpressDomain.Recipes.Documents;
 using RecipeExpressDomain.Recipes.Exceptions;
 using RecipeExpressDomain.Recipes.Repositories;
 using System;
@@ -22,10 +21,15 @@ namespace RecipeExpressDomain.Recipes.Services
             {
                 await _recipeMongoRepository.InsertRecipe(recipe);
             }
-            catch(Exception ext)
+            catch (Exception ext)
             {
                 throw new FailToInsertRecipeException(ext.Message);
             }
+        }
+
+        public async Task<RecipeDocument> GetRecipe(Guid recipeId)
+        {
+            return await _recipeMongoRepository.GetRecipe(recipeId.ToString());
         }
 
         public async Task<List<RecipeDocument>> GetRecipes()

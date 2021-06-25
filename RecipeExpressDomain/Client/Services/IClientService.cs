@@ -1,10 +1,12 @@
-﻿using System.Threading.Tasks;
-using c = RecipeExpressDomain.Client.Entities;
+﻿using RecipeExpressDomain.Client.Documents;
+using System;
+using System.Threading.Tasks;
 
 namespace RecipeExpressDomain.Client.Services
 {
     public interface IClientService
     {
-        Task EnrollClient(c.Client client);
+        Task EnrollClient(ClientDocument client);
+        Task EnrollRecipe(Guid clientId, Guid recipeId);
     }
 }

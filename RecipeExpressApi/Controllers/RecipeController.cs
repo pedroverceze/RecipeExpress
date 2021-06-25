@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RecipeExpressDomain.Recipes.Documents;
 using RecipeExpressDomain.Recipes.Services;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RecipeExpressApi.Controllers

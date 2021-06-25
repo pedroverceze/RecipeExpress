@@ -1,43 +1,49 @@
 ﻿using RecipeExpressDomain.Client.Documents;
 using RecipeExpressDomain.Client.Repositories;
+using RecipeExpressDomain.Recipes.Documents;
+using RecipeExpressDomain.Recipes.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using c = RecipeExpressDomain.Client.Entities;
 
 namespace RecipeExpressDomain.Client.Services
 {
     public class ClientService : IClientService
     {
-        private readonly IClientRepository _clientRepository;
         private readonly IClientMongoRepository _clientMongoRepository;
+        private readonly IRecipeService _recipeService;
 
-        public ClientService(IClientRepository clientRepository,
-                             IClientMongoRepository clientMongoRepository)
+        public ClientService(IClientMongoRepository clientMongoRepository,
+                             IRecipeService recipeService)
         {
-            _clientRepository = clientRepository;
             _clientMongoRepository = clientMongoRepository;
+            _recipeService = recipeService;
         }
 
-        public async Task EnrollClient(c.Client client)
+        public async Task EnrollClient(ClientDocument client)
         {
-            if(!await _clientRepository.EnrollClient(client))
+            await _clientMongoRepository.InsertClient(client);
+        }
+
+        public async Task EnrollRecipe(Guid clientId, Guid recipeId)
+        {
+            var client = await _clientMongoRepository.GetClient(clientId.ToString());
+
+            var recipe = await _recipeService.GetRecipe(recipeId);
+
+            if (client.Recipes.Count > 0)
             {
-                throw new Exception();
+                client.Recipes = new List<RecipeDocument>
+                {
+                    recipe
+                };
+            }
+            else
+            {
+                client.Recipes.Add(recipe);
             }
 
-            var doc = new ClientDocument
-            {
-                Age = client.Age,
-                CreatedAt = DateTime.Now,
-                Genre = client.Genre,
-                Name = client.Name,
-                Id = client.ClientId
-            };
-
-            await _clientMongoRepository.InsertClient(doc);
+            await _clientMongoRepository.UpdateClient(client);
         }
     }
 }
