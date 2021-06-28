@@ -1,9 +1,10 @@
 ﻿using RecipeExpressDomain.BuyList.Documents;
 using RecipeExpressDomain.BuyList.Repositories;
+using RecipeExpressDomain.Client.Documents;
 using RecipeExpressDomain.Client.Services;
-using RecipeExpressDomain.Ingredients.Documents;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace RecipeExpressDomain.BuyList.Services
@@ -24,37 +25,39 @@ namespace RecipeExpressDomain.BuyList.Services
         {
             var client = await _clientService.GetClient(clientId);
 
-            var recipes = client.Recipes;
+            var buyList = Testar(client);
+
+            await _buyListRepository.InsertBuyList(buyList);
+        }
+
+        private BuyListDocument Testar(ClientDocument clientDocument)
+        {
             var buyList = new BuyListDocument()
             {
                 IndividualList = new List<IndividualList>()
             };
 
 
-            foreach (var item in recipes)
+            var recipes = clientDocument.Recipes;
+
+            var total = recipes.SelectMany(x => x.Ingredients)
+            .GroupBy(i => i.Name)
+            .Select(g => new { Name = g.Key, Grams = g.Sum(x => x.Grams), Amount = g.Sum(x => x.Amount) }).ToList();
+
+
+            foreach (var item in total)
             {
-                buyList.IndividualList.AddRange(CreateItemList(item.Ingredients));
-            }
+                var individual = new IndividualList
+                {
+                    Name = item.Name,
+                    Amount = item.Amount,
+                    Grams = item.Grams
+                };
 
-            await _buyListRepository.InsertBuyList(buyList);
-        }
+                buyList.IndividualList.Add(individual);
+            };
 
-        private List<IndividualList> CreateItemList(List<IngredientDocument> ingredients)
-        {
-            var ingredientList = new List<IndividualList>();
-
-            foreach (var item in ingredients)
-            {
-                ingredientList.Add(
-                   new IndividualList
-                   {
-                       Name = item.Name,
-                       Amount = item.Amount,
-                       Grams = item.Grams
-                   });
-            }
-
-            return ingredientList;
+            return buyList;
         }
     }
 }
