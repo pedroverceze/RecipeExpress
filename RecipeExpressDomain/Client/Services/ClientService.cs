@@ -45,5 +45,10 @@ namespace RecipeExpressDomain.Client.Services
 
             await _clientMongoRepository.UpdateClient(client);
         }
+
+        public async Task<ClientDocument> GetClient(Guid clientId)
+        {
+            return await _clientMongoRepository.GetClient(clientId.ToString());
+        }
     }
 }

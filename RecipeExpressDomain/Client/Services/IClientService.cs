@@ -8,5 +8,6 @@ namespace RecipeExpressDomain.Client.Services
     {
         Task EnrollClient(ClientDocument client);
         Task EnrollRecipe(Guid clientId, Guid recipeId);
+        Task<ClientDocument> GetClient(Guid clientId);
     }
 }
