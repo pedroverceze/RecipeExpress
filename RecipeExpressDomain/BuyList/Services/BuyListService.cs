@@ -1,4 +1,5 @@
 ﻿using RecipeExpressDomain.BuyList.Documents;
+using RecipeExpressDomain.BuyList.Documents.Request;
 using RecipeExpressDomain.BuyList.Exceptions;
 using RecipeExpressDomain.BuyList.Repositories;
 using RecipeExpressDomain.Client.Documents;
@@ -22,14 +23,17 @@ namespace RecipeExpressDomain.BuyList.Services
             _buyListRepository = buyListRepository;
         }
 
-        public async Task CreateBuyList(Guid clientId)
+        public async Task<BuyListDocument> RegisterBuyList(CreateBuyListDto createBuyListDto)
         {
-            var client = await _clientService.GetClient(clientId);
+            var client = await _clientService.GetClient(createBuyListDto.ClientId);
 
             var buyList = CreateBuyList(client);
             buyList.CreatedAt = DateTime.Now;
+            buyList.ClientId = createBuyListDto.ClientId;
 
             await _buyListRepository.InsertBuyList(buyList);
+
+            return buyList;
         }
 
         private BuyListDocument CreateBuyList(ClientDocument clientDocument)

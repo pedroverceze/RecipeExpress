@@ -36,7 +36,7 @@ namespace RecipeExpressApi.Controllers
         }
 
 
-        [HttpPatch]
+        [HttpPost("Recipe")]
         public async Task<IActionResult> EnrollRecipe(ClientRecipe clientRecipe)
         {
             _logger.LogInformation("Recebendo requisição...");
