@@ -31,9 +31,7 @@ namespace RecipeExpressDomain.Client.Services
 
             var recipe = await _recipeService.GetRecipe(clientRecipe.RecipeId);
 
-            
-
-            if (client.Recipes.Count <= 0)
+            if (client.Recipes is null || client.Recipes.Count <= 0)
             {
                 client.Recipes = new List<RecipeDocument>
                 {

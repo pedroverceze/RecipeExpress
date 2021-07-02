@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RecipeExpressDomain.BuyList.Services;
 using RecipeExpressDomain.Client.Commands;
+using RecipeExpressDomain.Client.Commands.Requests;
 using RecipeExpressDomain.Client.Documents;
 using RecipeExpressDomain.Client.Services;
 using RecipeExpressDomain.Ingredients.Services;
@@ -21,6 +22,7 @@ namespace RecipeExpressIoC.Modules
             services.AddScoped<IBuyListService, BuyListService>();
 
             services.AddScoped<IRequestHandler<AddClientCommand, ClientDocument>, AddClientCommandHandler>();
+            services.AddScoped<IRequestHandler<AddRecipeClientCommand, ClientRecipe>, AddRecipeClientCommandHandler>();
         }
     }
 }

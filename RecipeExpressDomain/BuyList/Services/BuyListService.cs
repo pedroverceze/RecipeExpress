@@ -1,4 +1,5 @@
 ﻿using RecipeExpressDomain.BuyList.Documents;
+using RecipeExpressDomain.BuyList.Exceptions;
 using RecipeExpressDomain.BuyList.Repositories;
 using RecipeExpressDomain.Client.Documents;
 using RecipeExpressDomain.Client.Services;
@@ -25,12 +26,13 @@ namespace RecipeExpressDomain.BuyList.Services
         {
             var client = await _clientService.GetClient(clientId);
 
-            var buyList = Testar(client);
+            var buyList = CreateBuyList(client);
+            buyList.CreatedAt = DateTime.Now;
 
             await _buyListRepository.InsertBuyList(buyList);
         }
 
-        private BuyListDocument Testar(ClientDocument clientDocument)
+        private BuyListDocument CreateBuyList(ClientDocument clientDocument)
         {
             var buyList = new BuyListDocument()
             {
@@ -39,6 +41,11 @@ namespace RecipeExpressDomain.BuyList.Services
 
 
             var recipes = clientDocument.Recipes;
+
+            if(recipes is null || recipes.Count <= 0)
+            {
+                throw new ClientWithoutRecipesException("Client have no recipes.");
+            }
 
             var total = recipes.SelectMany(x => x.Ingredients)
             .GroupBy(i => i.Name)

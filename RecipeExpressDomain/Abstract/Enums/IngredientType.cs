@@ -12,7 +12,7 @@ namespace RecipeExpressDomain.Abstract.Enums
         Spices = 2,
         Grains = 3,
         Vegetable = 4,
-        Sheets = 5,
+        Leafs = 5,
         Pasta = 6,
         Fruits = 7
     }
