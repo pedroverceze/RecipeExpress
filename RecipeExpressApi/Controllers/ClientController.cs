@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using RecipeExpressDomain.Client.Commands;
 using RecipeExpressDomain.Client.Documents;
 using RecipeExpressDomain.Client.Services;
 using System;
@@ -29,7 +30,8 @@ namespace RecipeExpressApi.Controllers
         public async Task<IActionResult> Post(ClientDocument req)
         {
             _logger.LogInformation("Recebendo requisição...");
-            await _mediator.Send(req);
+            var command = new AddClientCommand(req);
+            await _mediator.Send(command);
 
             return CreatedAtAction(nameof(Post), req);
         }
