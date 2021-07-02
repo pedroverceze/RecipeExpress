@@ -25,11 +25,11 @@ namespace RecipeExpressDomain.Client.Services
             await _clientMongoRepository.InsertClient(client);
         }
 
-        public async Task EnrollRecipe(Guid clientId, Guid recipeId)
+        public async Task EnrollRecipe(ClientRecipe clientRecipe)
         {
-            var client = await _clientMongoRepository.GetClient(clientId.ToString());
+            var client = await _clientMongoRepository.GetClient(clientRecipe.ClientId.ToString());
 
-            var recipe = await _recipeService.GetRecipe(recipeId);
+            var recipe = await _recipeService.GetRecipe(clientRecipe.RecipeId);
 
             
 

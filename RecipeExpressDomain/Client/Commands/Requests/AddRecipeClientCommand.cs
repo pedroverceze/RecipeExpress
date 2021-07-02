@@ -4,20 +4,20 @@ using RecipeExpressDomain.Client.Documents;
 using RecipeExpressDomain.Client.Validations;
 using RecipeExpressDomain.Configurations.Commands;
 
-namespace RecipeExpressDomain.Client.Commands
+namespace RecipeExpressDomain.Client.Commands.Requests
 {
-    public class AddClientCommand : Command<ClientDocument>
+    public class AddRecipeClientCommand : Command<ClientRecipe>
     {
-        private readonly IValidator<ClientDocument> _validator;
+        private readonly IValidator<ClientRecipe> _validator;
         private ValidationResult _validationResult;
 
-        public AddClientCommand(ClientDocument client)
+        public AddRecipeClientCommand(ClientRecipe client)
         {
-            _validator = new ClientDocumentValidator();
-            ClientDocument = client;
+            _validator = new ClientRecipeValidator();
+            ClientRecipe = client;
         }
 
-        public ClientDocument ClientDocument { get; private set; }
+        public ClientRecipe ClientRecipe { get; private set; }
 
         public override ValidationResult ValidationResult
         {
@@ -25,7 +25,7 @@ namespace RecipeExpressDomain.Client.Commands
             {
                 if (_validationResult is null)
                 {
-                    _validationResult = _validator.Validate(ClientDocument);
+                    _validationResult = _validator.Validate(ClientRecipe);
                 }
                 return _validationResult;
             }

@@ -30,6 +30,7 @@ namespace RecipeExpressApi.Controllers
         public async Task<IActionResult> Post(ClientDocument req)
         {
             _logger.LogInformation("Recebendo requisição...");
+
             var command = new AddClientCommand(req);
             await _mediator.Send(command);
 
@@ -38,12 +39,12 @@ namespace RecipeExpressApi.Controllers
 
 
         [HttpPatch]
-        public async Task<IActionResult> EnrollRecipe(Guid clientId, Guid recipeId)
+        public async Task<IActionResult> EnrollRecipe(ClientRecipe clientRecipe)
         {
             _logger.LogInformation("Recebendo requisição...");
-            await _clientService.EnrollRecipe(clientId, recipeId);
+            await _clientService.EnrollRecipe(clientRecipe);
 
-            return CreatedAtAction(nameof(Post), clientId);
+            return CreatedAtAction(nameof(Post), clientRecipe); ;
         }
     }
 }

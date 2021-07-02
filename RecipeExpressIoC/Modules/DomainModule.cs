@@ -20,7 +20,7 @@ namespace RecipeExpressIoC.Modules
             services.AddScoped<IIngredientService, IngredientService>();
             services.AddScoped<IBuyListService, BuyListService>();
 
-            services.AddScoped<IRequestHandler<AddClientCommand, ClientDocument>, ClientCommandHandler>();
+            services.AddScoped<IRequestHandler<AddClientCommand, ClientDocument>, AddClientCommandHandler>();
         }
     }
 }

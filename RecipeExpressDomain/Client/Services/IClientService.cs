@@ -7,7 +7,7 @@ namespace RecipeExpressDomain.Client.Services
     public interface IClientService
     {
         Task EnrollClient(ClientDocument client);
-        Task EnrollRecipe(Guid clientId, Guid recipeId);
+        Task EnrollRecipe(ClientRecipe clientRecipe);
         Task<ClientDocument> GetClient(Guid clientId);
     }
 }
