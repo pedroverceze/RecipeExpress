@@ -43,7 +43,6 @@ namespace RecipeExpressDomain.BuyList.Services
                 IndividualList = new List<IndividualList>()
             };
 
-
             var recipes = clientDocument.Recipes;
 
             if(recipes is null || recipes.Count <= 0)
@@ -54,7 +53,6 @@ namespace RecipeExpressDomain.BuyList.Services
             var total = recipes.SelectMany(x => x.Ingredients)
             .GroupBy(i => i.Name)
             .Select(g => new { Name = g.Key, Grams = g.Sum(x => x.Grams), Amount = g.Sum(x => x.Amount) }).ToList();
-
 
             foreach (var item in total)
             {
