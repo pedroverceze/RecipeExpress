@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RecipeExpress.Data.Config;
 using RecipeExpress.Data.Interfaces;
@@ -14,7 +13,6 @@ namespace RecipeExpressIoC.Modules
 {
     public class DataModules
     {
-        private const string CdbConnectionStringName = "Recipe";
         public static void Register(IServiceCollection services, IConfiguration configuration)
         {
             var mongoConfig = configuration.GetSection("MongoDbConfig").Get<MongoDbSettings>();
@@ -26,8 +24,5 @@ namespace RecipeExpressIoC.Modules
             services.AddScoped<IRecipeMongoRepository, RecipeMongoRepository>();
             services.AddScoped<IBuyListRepository, BuyListMongoRepository>();
         }
-
-        private static string GetConnectionString(IConfiguration configuration)
-           => configuration.GetConnectionString(CdbConnectionStringName);
     }
 }
