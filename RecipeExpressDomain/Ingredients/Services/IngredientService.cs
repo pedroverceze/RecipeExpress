@@ -15,11 +15,13 @@ namespace RecipeExpressDomain.Ingredients.Services
             _ingredientMongoRepository = ingredientRepository;
         }
 
-        public async Task EnrollIngredient(IngredientDocument ingredient)
+        public async Task<IngredientDocument> EnrollIngredient(IngredientDocument ingredient)
         {
             try
             {
                 await _ingredientMongoRepository.InsertIngredient(ingredient);
+
+                return ingredient;
             }
             catch (Exception ext)
             {
