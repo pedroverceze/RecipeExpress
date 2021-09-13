@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RecipeExpressDomain.BuyList.Commands.Requests;
 using RecipeExpressDomain.BuyList.Documents.Request;
+using RecipeExpressDomain.BuyList.Services;
 using System.Threading.Tasks;
 
 [ApiController]
@@ -11,12 +12,23 @@ public class BuyListController : ControllerBase
 {
     private readonly IMediator _mediatr;
     private readonly ILogger<BuyListController> _logger;
+    private readonly IBuyListService _buyListService;
 
-    public BuyListController(IMediator mediator, 
-                             ILogger<BuyListController> logger)
+    public BuyListController(IMediator mediator,
+                             ILogger<BuyListController> logger,
+                             IBuyListService buyListService)
     {
         _logger = logger;
         _mediatr = mediator;
+        _buyListService = buyListService;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Get(string clientId)
+    {
+        var result = await _buyListService.GetBuyList(clientId);
+
+        return Ok(result);
     }
 
     [HttpPost]

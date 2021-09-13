@@ -21,7 +21,11 @@ namespace RecipeExpressDomain.BuyList.Services
         {
             _clientService = clientService;
             _buyListRepository = buyListRepository;
+        }
 
+        public async Task<BuyListDocument> GetBuyList(string clientId)
+        {
+            return await _buyListRepository.GetBuyList(clientId);
         }
 
         public async Task<BuyListDocument> RegisterBuyList(CreateBuyListDto createBuyListDto)

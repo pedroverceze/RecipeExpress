@@ -6,6 +6,7 @@ namespace RecipeExpressDomain.BuyList.Services
 {
     public interface IBuyListService
     {
+        Task<BuyListDocument> GetBuyList(string clientId);
         Task<BuyListDocument> RegisterBuyList(CreateBuyListDto createBuyListDto);
     }
 }
