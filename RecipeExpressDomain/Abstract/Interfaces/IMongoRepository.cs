@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RecipeExpressDomain.Abstract.Interfaces
@@ -35,5 +34,7 @@ namespace RecipeExpressDomain.Abstract.Interfaces
         Task DeleteByIdAsync(string id);
 
         Task DeleteManyAsync(Expression<Func<TDocument, bool>> filterExpression);
+
+        Task<List<TDocument>> Find(Expression<Func<TDocument, bool>> filterExpression);
     }
 }

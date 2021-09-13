@@ -1,6 +1,9 @@
 ﻿using RecipeExpressDomain.Abstract.Interfaces;
 using RecipeExpressDomain.BuyList.Documents;
 using RecipeExpressDomain.BuyList.Repositories;
+using System;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace RecipeExpress.Data.Repositories.Mongo
@@ -14,9 +17,12 @@ namespace RecipeExpress.Data.Repositories.Mongo
             _mongoRepository = mongoRepository;
         }
 
-        public async Task<BuyListDocument> GetBuyList(string id)
+        public async Task<BuyListDocument> GetBuyList(Guid id)
         {
-            return await _mongoRepository.FindByIdAsync(id);
+            Expression<Func<BuyListDocument, bool>> func = x => x.ClientId == id;
+            var result = await _mongoRepository.Find(func);
+
+            return result.OrderByDescending(c => c.CreatedAt).FirstOrDefault();
         }
 
         public async Task InsertBuyList(BuyListDocument document)

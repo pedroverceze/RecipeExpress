@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using RecipeExpressDomain.BuyList.Commands.Requests;
 using RecipeExpressDomain.BuyList.Documents.Request;
 using RecipeExpressDomain.BuyList.Services;
+using System;
 using System.Threading.Tasks;
 
 [ApiController]
@@ -24,7 +25,7 @@ public class BuyListController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get(string clientId)
+    public async Task<IActionResult> Get(Guid clientId)
     {
         var result = await _buyListService.GetBuyList(clientId);
 
