@@ -4,8 +4,6 @@ using Microsoft.Extensions.Logging;
 using RecipeExpressDomain.Client.Commands;
 using RecipeExpressDomain.Client.Commands.Requests;
 using RecipeExpressDomain.Client.Documents;
-using RecipeExpressDomain.Client.Services;
-using System;
 using System.Threading.Tasks;
 
 namespace RecipeExpressApi.Controllers
@@ -34,7 +32,6 @@ namespace RecipeExpressApi.Controllers
 
             return CreatedAtAction(nameof(Post), req);
         }
-
 
         [HttpPost("Recipe")]
         public async Task<IActionResult> EnrollRecipe(ClientRecipe clientRecipe)

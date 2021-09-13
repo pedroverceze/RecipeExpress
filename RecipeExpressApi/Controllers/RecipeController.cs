@@ -14,11 +14,15 @@ namespace RecipeExpressApi.Controllers
     {
         private readonly IMediator _mediator;
         private readonly ILogger<RecipeController> _logger;
+        private readonly IRecipeService _recipeService;
 
-        public RecipeController(IMediator mediator, ILogger<RecipeController> logger)
+        public RecipeController(IMediator mediator,
+                                ILogger<RecipeController> logger,
+                                IRecipeService recipeService)
         {
             _logger = logger;
             _mediator = mediator;
+            _recipeService = recipeService;
         }
 
         [HttpPost]
@@ -32,12 +36,12 @@ namespace RecipeExpressApi.Controllers
             return CreatedAtAction(nameof(Post), req);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Get()
-        //{
-        //    var recipes = await _mediator.GetRecipes();
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var recipes = await _recipeService.GetRecipes();
 
-        //    return Ok(recipes);
-        //}
+            return Ok(recipes);
+        }
     }
 }
