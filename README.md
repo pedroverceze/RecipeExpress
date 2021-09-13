@@ -14,6 +14,6 @@ obs:
 
 To run the application properly: 
 
-install .net v5.0
-run the docker/docker-compose.yaml (docker-compose up -d)
+- install .net v5.0
+- run the docker/docker-compose.yaml (docker-compose up -d)
 
