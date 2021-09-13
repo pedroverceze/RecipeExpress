@@ -21,6 +21,7 @@ namespace RecipeExpressDomain.BuyList.Services
         {
             _clientService = clientService;
             _buyListRepository = buyListRepository;
+
         }
 
         public async Task<BuyListDocument> RegisterBuyList(CreateBuyListDto createBuyListDto)
@@ -45,7 +46,7 @@ namespace RecipeExpressDomain.BuyList.Services
 
             var recipes = clientDocument.Recipes;
 
-            if(recipes is null || recipes.Count <= 0)
+            if (recipes is null || recipes.Count <= 0)
             {
                 throw new ClientWithoutRecipesException("Client have no recipes.");
             }
