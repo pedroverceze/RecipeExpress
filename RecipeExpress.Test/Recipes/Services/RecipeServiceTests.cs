@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Moq;
 using NUnit.Framework;
+using RecipeExpressDomain.Recipes.Documents;
 using RecipeExpressDomain.Recipes.Repositories;
 using RecipeExpressDomain.Recipes.Services;
 using System;
@@ -29,6 +30,18 @@ namespace RecipeExpress.Test.Recipes.Services
             Func<Task> act = async () => await _recipeService.EnrollRecipe(doc);
 
             act.Should().NotThrowAsync();
+            _recipeMongoRepository.Verify();
+        }
+
+        [Test]
+        public async Task GetRecipe_ShouldBeSuccessful()
+        {
+            var doc = CreateRecipeDocument();
+            _recipeMongoRepository.Setup(s => s.GetRecipe(_recipeId.ToString())).ReturnsAsync(doc).Verifiable();
+
+            var result = await _recipeService.GetRecipe(_recipeId);
+
+            result.Should().BeOfType<RecipeDocument>();
             _recipeMongoRepository.Verify();
         }
     }
