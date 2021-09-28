@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeExpressIoC", "RecipeE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCutting", "{A022F3DF-0374-4D0C-AE66-C931E6E9D5E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeExpress.Data", "RecipeExpress.Data\RecipeExpress.Data.csproj", "{DF2DBF0D-54B0-4C70-8607-EE2DCD764BDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeExpress.Data", "RecipeExpress.Data\RecipeExpress.Data.csproj", "{DF2DBF0D-54B0-4C70-8607-EE2DCD764BDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeExpress.Test", "RecipeExpress.Test\RecipeExpress.Test.csproj", "{5CA1F3C6-0028-45E7-AE9B-768D1FB7C9F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{DF2DBF0D-54B0-4C70-8607-EE2DCD764BDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF2DBF0D-54B0-4C70-8607-EE2DCD764BDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF2DBF0D-54B0-4C70-8607-EE2DCD764BDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CA1F3C6-0028-45E7-AE9B-768D1FB7C9F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CA1F3C6-0028-45E7-AE9B-768D1FB7C9F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CA1F3C6-0028-45E7-AE9B-768D1FB7C9F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CA1F3C6-0028-45E7-AE9B-768D1FB7C9F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{D91E5FBA-27EF-4840-8BB6-0FA34C665E7F} = {A022F3DF-0374-4D0C-AE66-C931E6E9D5E8}
 		{A022F3DF-0374-4D0C-AE66-C931E6E9D5E8} = {72CE9AC1-7E50-4334-A60A-5A8D0A149B60}
 		{DF2DBF0D-54B0-4C70-8607-EE2DCD764BDC} = {72CE9AC1-7E50-4334-A60A-5A8D0A149B60}
+		{5CA1F3C6-0028-45E7-AE9B-768D1FB7C9F6} = {2FEF72FB-748C-4168-B09E-29C5D0223201}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1234507A-1739-4CB3-A738-0DA99AF68B35}
