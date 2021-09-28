@@ -5,6 +5,8 @@ using RecipeExpressDomain.Recipes.Documents;
 using RecipeExpressDomain.Recipes.Repositories;
 using RecipeExpressDomain.Recipes.Services;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace RecipeExpress.Test.Recipes.Services
@@ -42,6 +44,19 @@ namespace RecipeExpress.Test.Recipes.Services
             var result = await _recipeService.GetRecipe(_recipeId);
 
             result.Should().BeOfType<RecipeDocument>();
+            result.Id.Should().Be(_recipeId);
+            _recipeMongoRepository.Verify();
+        }
+
+        [Test]
+        public async Task GetRecipes_ShouldBeSuccessful()
+        {
+            var doc = CreateRecipeListDocument().ToList();
+            _recipeMongoRepository.Setup(s => s.GetRecipes()).ReturnsAsync(doc).Verifiable();
+
+            var result = await _recipeService.GetRecipes();
+
+            result.Should().BeOfType<List<RecipeDocument>>();
             _recipeMongoRepository.Verify();
         }
     }
