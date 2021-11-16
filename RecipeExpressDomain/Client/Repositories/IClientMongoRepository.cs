@@ -7,6 +7,6 @@ namespace RecipeExpressDomain.Client.Repositories
     {
         Task<ClientDocument> GetClient(string id);
         Task UpdateClient(ClientDocument document);
-        Task InsertClient(ClientDocument document);
+
     }
 }

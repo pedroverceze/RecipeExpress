@@ -17,6 +17,7 @@ using RecipeExpressDomain.Recipes.Commands;
 using RecipeExpressDomain.Recipes.Commands.Requests;
 using RecipeExpressDomain.Recipes.Documents;
 using RecipeExpressDomain.Recipes.Services;
+using c = RecipeExpressDomain.Client.Entities;
 
 namespace RecipeExpressIoC.Modules
 {
@@ -30,7 +31,7 @@ namespace RecipeExpressIoC.Modules
             services.AddScoped<IIngredientService, IngredientService>();
             services.AddScoped<IBuyListService, BuyListService>();
 
-            services.AddScoped<IRequestHandler<AddClientCommand, ClientDocument>, AddClientCommandHandler>();
+            services.AddScoped<IRequestHandler<AddClientCommand, c.Client>, AddClientCommandHandler>();
             services.AddScoped<IRequestHandler<AddRecipeClientCommand, ClientRecipe>, AddRecipeClientCommandHandler>();
             services.AddScoped<IRequestHandler<AddRecipeCommand, RecipeDocument>, AddRecipeCommandHandler>();
             services.AddScoped<IRequestHandler<CreateBuyListCommand, BuyListDocument>, CreateBuyListCommandHandler>();

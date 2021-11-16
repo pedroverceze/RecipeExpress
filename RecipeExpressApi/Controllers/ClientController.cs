@@ -5,6 +5,7 @@ using RecipeExpressDomain.Client.Commands;
 using RecipeExpressDomain.Client.Commands.Requests;
 using RecipeExpressDomain.Client.Documents;
 using System.Threading.Tasks;
+using c = RecipeExpressDomain.Client.Entities;
 
 namespace RecipeExpressApi.Controllers
 {
@@ -23,7 +24,7 @@ namespace RecipeExpressApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(ClientDocument req)
+        public async Task<IActionResult> Post(c.Client req)
         {
             _logger.LogInformation("Recebendo requisição...");
 
