@@ -1,9 +1,10 @@
 ﻿using FluentValidation;
-using RecipeExpressDomain.Client.Documents;
+using c = RecipeExpressDomain.Client.Entities;
+
 
 namespace RecipeExpressDomain.Client.Validations
 {
-    public class ClientDocumentValidator : AbstractValidator<ClientDocument>
+    public class ClientDocumentValidator : AbstractValidator<c.Client>
     {
         public ClientDocumentValidator()
         {

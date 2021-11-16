@@ -5,24 +5,28 @@ using RecipeExpressDomain.Recipes.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using c = RecipeExpressDomain.Client.Entities;
 
 namespace RecipeExpressDomain.Client.Services
 {
     public class ClientService : IClientService
     {
         private readonly IClientMongoRepository _clientMongoRepository;
+        private readonly IClientEntityRepository _clientEntityRepository;
         private readonly IRecipeService _recipeService;
 
         public ClientService(IClientMongoRepository clientMongoRepository,
-                             IRecipeService recipeService)
+                             IRecipeService recipeService,
+                             IClientEntityRepository clientEntityRepository)
         {
             _clientMongoRepository = clientMongoRepository;
             _recipeService = recipeService;
+            _clientEntityRepository = clientEntityRepository;
         }
 
-        public async Task EnrollClient(ClientDocument client)
+        public async Task EnrollClient(c.Client client)
         {
-            await _clientMongoRepository.InsertClient(client);
+            await _clientEntityRepository.InsertClient(client);
         }
 
         public async Task EnrollRecipe(ClientRecipe clientRecipe)

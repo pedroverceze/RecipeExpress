@@ -1,13 +1,13 @@
 ﻿using MediatR;
-using RecipeExpressDomain.Client.Documents;
 using RecipeExpressDomain.Client.Services;
 using RecipeExpressDomain.Configurations.Commands;
 using System.Threading;
 using System.Threading.Tasks;
+using c = RecipeExpressDomain.Client.Entities;
 
 namespace RecipeExpressDomain.Client.Commands
 {
-    public class AddClientCommandHandler : IRequestHandler<AddClientCommand, ClientDocument>
+    public class AddClientCommandHandler : IRequestHandler<AddClientCommand, c.Client>
     {
         private IClientService _clientService;
 
@@ -16,13 +16,13 @@ namespace RecipeExpressDomain.Client.Commands
             _clientService = clientService;
         }
 
-        public async Task<ClientDocument> Handle(AddClientCommand request, CancellationToken cancellationToken)
+        public async Task<c.Client> Handle(AddClientCommand request, CancellationToken cancellationToken)
         {
             request.Validate();
 
-            await _clientService.EnrollClient(request.ClientDocument);
+            await _clientService.EnrollClient(request.Client);
 
-            return request.ClientDocument;
+            return request.Client;
         }
     }
 }
