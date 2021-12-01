@@ -1,4 +1,4 @@
-﻿using RecipeExpressDomain.Ingredients.Documents;
+﻿using RecipeExpressDomain.Ingredients.Entities;
 using RecipeExpressDomain.Ingredients.Exceptions;
 using RecipeExpressDomain.Ingredients.Repositories;
 using System;
@@ -9,17 +9,20 @@ namespace RecipeExpressDomain.Ingredients.Services
     public class IngredientService : IIngredientService
     {
         private readonly IIngredientMongoRepository _ingredientMongoRepository;
+        private readonly IIngredientEntityRepository _ingredientEntityRepository;
 
-        public IngredientService(IIngredientMongoRepository ingredientRepository)
+        public IngredientService(IIngredientMongoRepository ingredientRepository,
+                                 IIngredientEntityRepository ingredientEntityRepository)
         {
             _ingredientMongoRepository = ingredientRepository;
+            _ingredientEntityRepository = ingredientEntityRepository;
         }
 
-        public async Task<IngredientDocument> EnrollIngredient(IngredientDocument ingredient)
+        public async Task<Ingredient> EnrollIngredient(Ingredient ingredient)
         {
             try
             {
-                await _ingredientMongoRepository.InsertIngredient(ingredient);
+                await _ingredientEntityRepository.InsertIngredient(ingredient);
 
                 return ingredient;
             }

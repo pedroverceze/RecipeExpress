@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using RecipeExpressDomain.Ingredients.Documents;
+using RecipeExpressDomain.Ingredients.Entities;
 
 namespace RecipeExpressDomain.Ingredients.Validations
 {
-    public class IngredientDocumentValidator : AbstractValidator<IngredientDocument>
+    public class IngredientDocumentValidator : AbstractValidator<Ingredient>
     {
         public IngredientDocumentValidator()
         {

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RecipeExpressDomain.Ingredients.Commands.Requests;
 using RecipeExpressDomain.Ingredients.Documents;
+using RecipeExpressDomain.Ingredients.Entities;
 using System.Threading.Tasks;
 
 namespace RecipeExpressApi.Controllers
@@ -22,7 +23,7 @@ namespace RecipeExpressApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(IngredientDocument req)
+        public async Task<IActionResult> Post(Ingredient req)
         {
             _logger.LogInformation("Recebendo requisição...");
 

@@ -1,23 +1,23 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using RecipeExpressDomain.Configurations.Commands;
-using RecipeExpressDomain.Ingredients.Documents;
+using RecipeExpressDomain.Ingredients.Entities;
 using RecipeExpressDomain.Ingredients.Validations;
 
 namespace RecipeExpressDomain.Ingredients.Commands.Requests
 {
-    public class AddIngredientCommand : Command<IngredientDocument>
+    public class AddIngredientCommand : Command<Ingredient>
     {
-        private readonly IValidator<IngredientDocument> _validator;
+        private readonly IValidator<Ingredient> _validator;
         private ValidationResult _validationResult;
 
-        public AddIngredientCommand(IngredientDocument ingredient)
+        public AddIngredientCommand(Ingredient ingredient)
         {
             _validator = new IngredientDocumentValidator();
-            IngredientDocument = ingredient;
+            Ingredient = ingredient;
         }
 
-        public IngredientDocument IngredientDocument { get; private set; }
+        public Ingredient Ingredient { get; private set; }
 
         public override ValidationResult ValidationResult
         {
@@ -25,7 +25,7 @@ namespace RecipeExpressDomain.Ingredients.Commands.Requests
             {
                 if (_validationResult is null)
                 {
-                    _validationResult = _validator.Validate(IngredientDocument);
+                    _validationResult = _validator.Validate(Ingredient);
                 }
                 return _validationResult;
             }

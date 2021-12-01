@@ -11,6 +11,7 @@ namespace RecipeExpress.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ClientMapper());
+            modelBuilder.ApplyConfiguration(new IngredientMapper());
         }
 
     }

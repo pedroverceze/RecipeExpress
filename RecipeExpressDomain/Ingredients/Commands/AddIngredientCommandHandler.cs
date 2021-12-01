@@ -1,13 +1,13 @@
 ﻿using MediatR;
 using RecipeExpressDomain.Ingredients.Commands.Requests;
-using RecipeExpressDomain.Ingredients.Documents;
+using RecipeExpressDomain.Ingredients.Entities;
 using RecipeExpressDomain.Ingredients.Services;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace RecipeExpressDomain.Ingredients.Commands
 {
-    public class AddIngredientCommandHandler : IRequestHandler<AddIngredientCommand, IngredientDocument>
+    public class AddIngredientCommandHandler : IRequestHandler<AddIngredientCommand, Ingredient>
     {
         private readonly IIngredientService _ingredientService;
 
@@ -16,9 +16,9 @@ namespace RecipeExpressDomain.Ingredients.Commands
             _ingredientService = ingredientService;
         }
 
-        public async Task<IngredientDocument> Handle(AddIngredientCommand command, CancellationToken cancellationToken)
+        public async Task<Ingredient> Handle(AddIngredientCommand command, CancellationToken cancellationToken)
         {
-            return await _ingredientService.EnrollIngredient(command.IngredientDocument);
+            return await _ingredientService.EnrollIngredient(command.Ingredient);
         }
     }
 }
