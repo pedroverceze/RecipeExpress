@@ -12,7 +12,7 @@ namespace RecipeExpress.Data.Context
         {
             modelBuilder.ApplyConfiguration(new ClientMapper());
             modelBuilder.ApplyConfiguration(new IngredientMapper());
+            modelBuilder.ApplyConfiguration(new RecipeMapper());
         }
-
     }
 }

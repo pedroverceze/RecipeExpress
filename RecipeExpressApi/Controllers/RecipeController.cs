@@ -2,7 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RecipeExpressDomain.Recipes.Commands.Requests;
-using RecipeExpressDomain.Recipes.Documents;
+using RecipeExpressDomain.Recipes.Entities;
 using RecipeExpressDomain.Recipes.Services;
 using System.Threading.Tasks;
 
@@ -26,7 +26,7 @@ namespace RecipeExpressApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(RecipeDocument req)
+        public async Task<IActionResult> Post(Recipe req)
         {
             _logger.LogInformation("Receiving requisition...");
 

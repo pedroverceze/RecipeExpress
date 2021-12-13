@@ -13,10 +13,10 @@ namespace RecipeExpress.Test.Recipes.Services
         [Fact]
         public async Task EnrollRecipe_ShouldBeSuccessful()
         {
-            var doc = CreateRecipeDocument();
-            _recipeMongoRepository.Setup(s => s.InsertRecipe(doc)).Returns(Task.CompletedTask).Verifiable();
+            var recipe = CreateRecipe();
+            _recipeEntityRepository.Setup(s => s.InsertRecipe(recipe)).Returns(Task.CompletedTask).Verifiable();
 
-            await _recipeService.EnrollRecipe(doc);
+            await _recipeService.EnrollRecipe(recipe);
 
             _recipeMongoRepository.Verify();
         }

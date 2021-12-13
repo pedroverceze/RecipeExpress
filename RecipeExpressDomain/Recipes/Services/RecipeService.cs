@@ -1,4 +1,5 @@
 ﻿using RecipeExpressDomain.Recipes.Documents;
+using RecipeExpressDomain.Recipes.Entities;
 using RecipeExpressDomain.Recipes.Exceptions;
 using RecipeExpressDomain.Recipes.Repositories;
 using System;
@@ -10,16 +11,19 @@ namespace RecipeExpressDomain.Recipes.Services
     public class RecipeService : IRecipeService
     {
         private readonly IRecipeMongoRepository _recipeMongoRepository;
-        public RecipeService(IRecipeMongoRepository recipeRepository)
+        private readonly IRecipeEntityRepository _recipeEntityRepository;
+        public RecipeService(IRecipeMongoRepository recipeRepository,
+                            IRecipeEntityRepository recipeEntityRepository)
         {
             _recipeMongoRepository = recipeRepository;
+            _recipeEntityRepository = recipeEntityRepository;
         }
 
-        public async Task EnrollRecipe(RecipeDocument recipe)
+        public async Task EnrollRecipe(Recipe recipe)
         {
             try
             {
-                await _recipeMongoRepository.InsertRecipe(recipe);
+                await _recipeEntityRepository.InsertRecipe(recipe);
             }
             catch (Exception ext)
             {
