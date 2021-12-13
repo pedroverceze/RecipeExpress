@@ -11,15 +11,12 @@ namespace RecipeExpressDomain.Client.Services
 {
     public class ClientService : IClientService
     {
-        private readonly IClientMongoRepository _clientMongoRepository;
         private readonly IClientEntityRepository _clientEntityRepository;
         private readonly IRecipeService _recipeService;
 
-        public ClientService(IClientMongoRepository clientMongoRepository,
-                             IRecipeService recipeService,
+        public ClientService(IRecipeService recipeService,
                              IClientEntityRepository clientEntityRepository)
         {
-            _clientMongoRepository = clientMongoRepository;
             _recipeService = recipeService;
             _clientEntityRepository = clientEntityRepository;
         }
@@ -31,7 +28,7 @@ namespace RecipeExpressDomain.Client.Services
 
         public async Task EnrollRecipe(ClientRecipe clientRecipe)
         {
-            var client = await _clientMongoRepository.GetClient(clientRecipe.ClientId.ToString());
+            var client = await _clientEntityRepository.GetClient(clientRecipe.ClientId);
 
             var recipe = await _recipeService.GetRecipe(clientRecipe.RecipeId);
 
@@ -47,12 +44,12 @@ namespace RecipeExpressDomain.Client.Services
                 client.Recipes.Add(recipe);
             }
 
-            await _clientMongoRepository.UpdateClient(client);
+            await _clientEntityRepository.UpdateClient(client);
         }
 
         public async Task<ClientDocument> GetClient(Guid clientId)
         {
-            return await _clientMongoRepository.GetClient(clientId.ToString());
+            return await _clientEntityRepository.GetClient(clientId.ToString());
         }
     }
 }

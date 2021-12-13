@@ -12,11 +12,6 @@ CREATE TABLE CLIENT (
 	createdAt datetime not null
 );
 
-CREATE TABLE BUY_LIST(
-	list_id uniqueidentifier primary key,
-	createdAt datetime not null
-);
-
 CREATE TABLE INGREDIENT(
 	ingredient_id uniqueidentifier primary key,
 	ingredient_name varchar(50) not null,
@@ -25,15 +20,12 @@ CREATE TABLE INGREDIENT(
 	createdAt datetime not null
 );
 
---ALTER TABLE INGREDIENT ADD type_id int NOT NULL;
---ALTER TABLE INGREDIENT ADD perishable bit NOT NULL;
 
 CREATE TABLE INGREDIENT_TYPE(
 	ingredient_type_id int primary key,
 	type_description varchar(500) not null
 );
 
-drop table INGREDIENT_TYPE;
 
 CREATE TABLE RECIPE(
 	recipe_id uniqueidentifier primary key,

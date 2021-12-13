@@ -9,7 +9,6 @@ using RecipeExpress.Data.Repositories.Mongo;
 using RecipeExpressDomain.Abstract.Interfaces;
 using RecipeExpressDomain.BuyList.Repositories;
 using RecipeExpressDomain.Client.Repositories;
-using RecipeExpressDomain.Ingredients.Repositories;
 using RecipeExpressDomain.Recipes.Repositories;
 
 namespace RecipeExpressIoC.Modules
@@ -27,9 +26,6 @@ namespace RecipeExpressIoC.Modules
 
             services.AddSingleton<IMongoDbSettings>(t => mongoConfig);
             services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
-            services.AddScoped<IClientMongoRepository, ClientMongoRepository>();
-            services.AddScoped<IIngredientMongoRepository, IngredientMongoRepository>();
-            services.AddScoped<IRecipeMongoRepository, RecipeMongoRepository>();
             services.AddScoped<IBuyListRepository, BuyListMongoRepository>();
             services.AddScoped<IClientEntityRepository, ClientEntityRepository>();
             services.AddScoped<IRecipeEntityRepository, RecipeEntityRepository>();

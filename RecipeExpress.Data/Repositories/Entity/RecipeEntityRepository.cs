@@ -1,7 +1,6 @@
 ﻿using RecipeExpressDomain.Recipes.Entities;
 using RecipeExpressDomain.Recipes.Repositories;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using c = RecipeExpress.Data.Context;
@@ -17,11 +16,6 @@ namespace RecipeExpress.Data.Repositories.Entity
         {
             return Filter(id)
                    .FirstOrDefault();
-        }
-
-        public Task<List<Recipe>> GetRecipes()
-        {
-            throw new System.NotImplementedException();
         }
 
         public async Task InsertRecipe(Recipe recipe)

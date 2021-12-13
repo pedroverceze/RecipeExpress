@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using RecipeExpressDomain.Recipes.Commands.Requests;
 using RecipeExpressDomain.Recipes.Entities;
 using RecipeExpressDomain.Recipes.Services;
+using System;
 using System.Threading.Tasks;
 
 namespace RecipeExpressApi.Controllers
@@ -37,7 +38,7 @@ namespace RecipeExpressApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(Guid id)
         {
             var recipes = await _recipeService.GetRecipes();
 
