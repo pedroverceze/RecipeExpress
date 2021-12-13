@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using RecipeExpress.Data.Config;
 using RecipeExpress.Data.Context;
 using RecipeExpress.Data.Interfaces;
+using RecipeExpress.Data.Repositories.Entity;
 using RecipeExpress.Data.Repositories.Mongo;
 using RecipeExpressDomain.Abstract.Interfaces;
 using RecipeExpressDomain.BuyList.Repositories;
@@ -31,6 +32,7 @@ namespace RecipeExpressIoC.Modules
             services.AddScoped<IRecipeMongoRepository, RecipeMongoRepository>();
             services.AddScoped<IBuyListRepository, BuyListMongoRepository>();
             services.AddScoped<IClientEntityRepository, ClientEntityRepository>();
+            services.AddScoped<IRecipeEntityRepository, RecipeEntityRepository>();
         }
     }
 }

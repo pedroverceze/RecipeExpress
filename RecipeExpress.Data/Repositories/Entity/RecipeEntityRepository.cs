@@ -27,6 +27,7 @@ namespace RecipeExpress.Data.Repositories.Entity
         public async Task InsertRecipe(Recipe recipe)
         {
             await _dbSet.AddAsync(recipe);
+            _context.SaveChanges();
         }
 
         private IQueryable<Recipe> Filter(Guid id)
