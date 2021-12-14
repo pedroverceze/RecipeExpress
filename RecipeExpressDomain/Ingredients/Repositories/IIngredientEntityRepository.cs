@@ -6,5 +6,7 @@ namespace RecipeExpressDomain.Ingredients.Repositories
     public interface IIngredientEntityRepository
     {
         Task InsertIngredient(Ingredient ingredient);
+
+        Task<Ingredient> GetIngredient(string name);
     }
 }

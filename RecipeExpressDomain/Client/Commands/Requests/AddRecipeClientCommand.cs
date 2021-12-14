@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
-using RecipeExpressDomain.Client.Documents;
+using RecipeExpressDomain.Client.Entities;
 using RecipeExpressDomain.Client.Validations;
 using RecipeExpressDomain.Configurations.Commands;
 

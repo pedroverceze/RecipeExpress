@@ -1,5 +1,6 @@
 ﻿using RecipeExpressDomain.Abstract.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace RecipeExpressDomain.Client.Entities
 {
@@ -9,5 +10,6 @@ namespace RecipeExpressDomain.Client.Entities
         public string Name { get; set; }
         public int Age { get; set; }
         public string Genre { get; set; }
+        public virtual ICollection<ClientRecipe> ClientRecipes { get; set; } = new List<ClientRecipe>();
     }
 }

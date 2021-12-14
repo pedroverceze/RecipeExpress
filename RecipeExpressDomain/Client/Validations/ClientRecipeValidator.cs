@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using RecipeExpressDomain.Client.Documents;
+using RecipeExpressDomain.Client.Entities;
 
 namespace RecipeExpressDomain.Client.Validations
 {

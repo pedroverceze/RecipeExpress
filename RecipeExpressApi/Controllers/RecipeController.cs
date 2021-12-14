@@ -40,9 +40,9 @@ namespace RecipeExpressApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Get(Guid id)
         {
-            var recipes = await _recipeService.GetRecipes();
+            var recipe = await _recipeService.GetRecipe(id);
 
-            return Ok(recipes);
+            return Ok(recipe);
         }
     }
 }

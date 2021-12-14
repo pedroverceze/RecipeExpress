@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RecipeExpressDomain.Client.Commands;
 using RecipeExpressDomain.Client.Commands.Requests;
-using RecipeExpressDomain.Client.Documents;
+using RecipeExpressDomain.Client.Entities;
 using System.Threading.Tasks;
 using c = RecipeExpressDomain.Client.Entities;
 

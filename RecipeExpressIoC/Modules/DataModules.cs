@@ -9,6 +9,7 @@ using RecipeExpress.Data.Repositories.Mongo;
 using RecipeExpressDomain.Abstract.Interfaces;
 using RecipeExpressDomain.BuyList.Repositories;
 using RecipeExpressDomain.Client.Repositories;
+using RecipeExpressDomain.Ingredients.Repositories;
 using RecipeExpressDomain.Recipes.Repositories;
 
 namespace RecipeExpressIoC.Modules
@@ -29,6 +30,8 @@ namespace RecipeExpressIoC.Modules
             services.AddScoped<IBuyListRepository, BuyListMongoRepository>();
             services.AddScoped<IClientEntityRepository, ClientEntityRepository>();
             services.AddScoped<IRecipeEntityRepository, RecipeEntityRepository>();
+            services.AddScoped<IClientRecipeRepository, ClientRecipeRepository>();
+            services.AddScoped<IIngredientEntityRepository, IngredientEntityRepository>();
         }
     }
 }

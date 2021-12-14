@@ -1,9 +1,7 @@
-﻿using RecipeExpressDomain.Client.Documents;
+﻿using RecipeExpressDomain.Client.Entities;
 using RecipeExpressDomain.Client.Repositories;
-using RecipeExpressDomain.Recipes.Documents;
 using RecipeExpressDomain.Recipes.Services;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using c = RecipeExpressDomain.Client.Entities;
 
@@ -13,12 +11,15 @@ namespace RecipeExpressDomain.Client.Services
     {
         private readonly IClientEntityRepository _clientEntityRepository;
         private readonly IRecipeService _recipeService;
+        private readonly IClientRecipeRepository _clientRecipeRepository;
 
         public ClientService(IRecipeService recipeService,
-                             IClientEntityRepository clientEntityRepository)
+                             IClientEntityRepository clientEntityRepository,
+                             IClientRecipeRepository clientRecipeRepository)
         {
             _recipeService = recipeService;
             _clientEntityRepository = clientEntityRepository;
+            _clientRecipeRepository = clientRecipeRepository;
         }
 
         public async Task EnrollClient(c.Client client)
@@ -28,28 +29,12 @@ namespace RecipeExpressDomain.Client.Services
 
         public async Task EnrollRecipe(ClientRecipe clientRecipe)
         {
-            var client = await _clientEntityRepository.GetClient(clientRecipe.ClientId);
-
-            var recipe = await _recipeService.GetRecipe(clientRecipe.RecipeId);
-
-            if (client.Recipes is null || client.Recipes.Count <= 0)
-            {
-                client.Recipes = new List<RecipeDocument>
-                {
-                    recipe
-                };
-            }
-            else
-            {
-                client.Recipes.Add(recipe);
-            }
-
-            await _clientEntityRepository.UpdateClient(client);
+            await _clientRecipeRepository.AddClientRecipe(clientRecipe);
         }
 
-        public async Task<ClientDocument> GetClient(Guid clientId)
+        public async Task<c.Client> GetClient(Guid clientId)
         {
-            return await _clientEntityRepository.GetClient(clientId.ToString());
+            return await _clientEntityRepository.GetClient(clientId);
         }
     }
 }

@@ -8,13 +8,10 @@ namespace RecipeExpressDomain.Ingredients.Services
 {
     public class IngredientService : IIngredientService
     {
-        private readonly IIngredientMongoRepository _ingredientMongoRepository;
         private readonly IIngredientEntityRepository _ingredientEntityRepository;
 
-        public IngredientService(IIngredientMongoRepository ingredientRepository,
-                                 IIngredientEntityRepository ingredientEntityRepository)
+        public IngredientService(IIngredientEntityRepository ingredientEntityRepository)
         {
-            _ingredientMongoRepository = ingredientRepository;
             _ingredientEntityRepository = ingredientEntityRepository;
         }
 
@@ -34,9 +31,9 @@ namespace RecipeExpressDomain.Ingredients.Services
 
         public async Task<bool> CheckIngredientExists(string name)
         {
-            var ingredient = await _ingredientMongoRepository.GetIngredient(name);
+            var ingredient = await _ingredientEntityRepository.GetIngredient(name);
 
-            return ingredient.Id != Guid.Empty;
+            return ingredient.IngredientId != Guid.Empty;
         }
     }
 }

@@ -19,6 +19,7 @@ namespace RecipeExpressDomain.Recipes.Services
             try
             {
                 await _recipeEntityRepository.InsertRecipe(recipe);
+                //TODO: resolver insert de recipe 
             }
             catch (Exception ext)
             {

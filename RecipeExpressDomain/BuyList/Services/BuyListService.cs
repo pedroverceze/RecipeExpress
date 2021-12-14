@@ -1,12 +1,8 @@
 ﻿using RecipeExpressDomain.BuyList.Documents;
 using RecipeExpressDomain.BuyList.Documents.Request;
-using RecipeExpressDomain.BuyList.Exceptions;
 using RecipeExpressDomain.BuyList.Repositories;
-using RecipeExpressDomain.Client.Documents;
 using RecipeExpressDomain.Client.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace RecipeExpressDomain.BuyList.Services
@@ -28,50 +24,55 @@ namespace RecipeExpressDomain.BuyList.Services
             return await _buyListRepository.GetBuyList(clientId);
         }
 
-        public async Task<BuyListDocument> RegisterBuyList(CreateBuyListDto createBuyListDto)
+        public Task<BuyListDocument> RegisterBuyList(CreateBuyListDto createBuyListDto)
         {
-            var client = await _clientService.GetClient(createBuyListDto.ClientId);
-
-            var buyList = CreateBuyList(client);
-            buyList.CreatedAt = DateTime.Now;
-            buyList.ClientId = createBuyListDto.ClientId;
-
-            await _buyListRepository.InsertBuyList(buyList);
-
-            return buyList;
+            throw new NotImplementedException();
         }
 
-        private BuyListDocument CreateBuyList(ClientDocument clientDocument)
-        {
-            var buyList = new BuyListDocument()
-            {
-                IndividualList = new List<IndividualList>()
-            };
+        //public async Task<BuyListDocument> RegisterBuyList(CreateBuyListDto createBuyListDto)
+        //{
+        //    var client = await _clientService.GetClient(createBuyListDto.ClientId);
 
-            var recipes = clientDocument.Recipes;
+        //    var buyList = CreateBuyList(client);
+        //    buyList.CreatedAt = DateTime.Now;
+        //    buyList.ClientId = createBuyListDto.ClientId;
 
-            if (recipes is null || recipes.Count <= 0)
-            {
-                throw new ClientWithoutRecipesException("Client have no recipes.");
-            }
+        //    await _buyListRepository.InsertBuyList(buyList);
 
-            var total = recipes.SelectMany(x => x.Ingredients)
-            .GroupBy(i => i.Name)
-            .Select(g => new { Name = g.Key, Grams = g.Sum(x => x.Grams), Amount = g.Sum(x => x.Amount) }).ToList();
+        //    return buyList;
+        //}
 
-            foreach (var item in total)
-            {
-                var individual = new IndividualList
-                {
-                    Name = item.Name,
-                    Amount = item.Amount,
-                    Grams = item.Grams
-                };
+        //private BuyListDocument CreateBuyList(c.Client client)
+        //{
+        //    var buyList = new BuyListDocument()
+        //    {
+        //        IndividualList = new List<IndividualList>()
+        //    };
 
-                buyList.IndividualList.Add(individual);
-            };
+        //    var recipes = client.Recipes;
 
-            return buyList;
-        }
+        //    if (recipes is null || recipes.Count <= 0)
+        //    {
+        //        throw new ClientWithoutRecipesException("Client have no recipes.");
+        //    }
+
+        //    var total = recipes.SelectMany(x => x.Ingredients)
+        //    .GroupBy(i => i.Name)
+        //    .Select(g => new { Name = g.Key, Grams = g.Sum(x => x.Grams), Amount = g.Sum(x => x.Amount) }).ToList();
+
+        //    foreach (var item in total)
+        //    {
+        //        var individual = new IndividualList
+        //        {
+        //            Name = item.Name,
+        //            Amount = item.Amount,
+        //            Grams = item.Grams
+        //        };
+
+        //        buyList.IndividualList.Add(individual);
+        //    };
+
+        //    return buyList;
+        //}
     }
 }

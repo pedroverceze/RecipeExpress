@@ -1,4 +1,4 @@
-﻿using RecipeExpressDomain.Client.Documents;
+﻿using RecipeExpressDomain.Client.Entities;
 using System;
 using System.Threading.Tasks;
 using c = RecipeExpressDomain.Client.Entities;
@@ -9,6 +9,6 @@ namespace RecipeExpressDomain.Client.Services
     {
         Task EnrollClient(c.Client client);
         Task EnrollRecipe(ClientRecipe clientRecipe);
-        Task<ClientDocument> GetClient(Guid clientId);
+        Task<c.Client> GetClient(Guid clientId);
     }
 }
