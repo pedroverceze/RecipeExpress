@@ -61,6 +61,12 @@ CREATE TABLE DIFFICULT(
 	description varchar(500) not null
 	);
 
+CREATE TABLE LOG(
+	log_id uniqueidentifier primary key,
+	createdAt datetime not null,
+	logMessage varchar(1000) not null
+) 
+
 ALTER TABLE CLIENT_RECIPE
 ADD CONSTRAINT FK_RECIPE_ID
 FOREIGN KEY (recipe_id)
