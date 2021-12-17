@@ -20,15 +20,25 @@ namespace RecipeExpress.Data.Repositories.Mongo
 
         public async Task InsertClient(Client client)
         {
-            var cli = Filter(client.ClientId);
-
-            if(cli is not null)
+            try
             {
-                _dbSet.Append(client);
-            }
+                var cli = Filter(client.ClientId);
 
-            await _dbSet.AddAsync(client);
-            _context.SaveChanges();
+                if (cli is not null)
+                {
+                    _dbSet.Append(client);
+                }
+                else
+                {
+                    await _dbSet.AddAsync(client);
+                }
+
+                _context.SaveChanges();
+            }catch(Exception ext)
+            {
+                var msg = ext.Message;
+                throw;
+            }
         }
 
         private IQueryable<Client> Filter(Guid clientId)

@@ -38,6 +38,7 @@ namespace RecipeExpressApi.Controllers
         }
 
         [HttpPost]
+        [Route("/addRecipe")]
         public async Task<IActionResult> AddRecipe(Guid recipeId, Guid clientId)
         {
             await _clientService.AddRecipe(recipeId, clientId);

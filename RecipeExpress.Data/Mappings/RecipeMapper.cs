@@ -18,7 +18,6 @@ namespace RecipeExpress.Data.Mappings
             builder.Property(b => b.PrepareMode).HasColumnName("recipe_prepare_mode").IsRequired();
             builder.Property(b => b.CreatedAt).HasColumnName("createdAt").IsRequired();
             builder.Property(b => b.CreatedBy).HasColumnName("createdBy");
-            builder.Ignore(b => b.Clients);
         }
     }
 }
