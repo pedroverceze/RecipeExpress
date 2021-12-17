@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RecipeExpress.Data.Repositories.Entity;
+using RecipeExpressDomain.Abstract.Log;
 using RecipeExpressDomain.BuyList.Commands;
 using RecipeExpressDomain.BuyList.Commands.Requests;
 using RecipeExpressDomain.BuyList.Documents;
@@ -33,6 +34,7 @@ namespace RecipeExpressIoC.Modules
             services.AddScoped<IIngredientService, IngredientService>();
             services.AddScoped<IBuyListService, BuyListService>();
             services.AddScoped<IIngredientEntityRepository, IngredientEntityRepository>();
+            services.AddScoped(typeof(ILogService<>), typeof(LogService<>));
 
             services.AddScoped<IRequestHandler<AddClientCommand, c.Client>, AddClientCommandHandler>();
             services.AddScoped<IRequestHandler<AddRecipeClientCommand, ClientRecipe>, AddRecipeClientCommandHandler>();
