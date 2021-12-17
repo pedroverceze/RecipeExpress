@@ -8,8 +8,6 @@ using RecipeExpressDomain.BuyList.Commands.Requests;
 using RecipeExpressDomain.BuyList.Documents;
 using RecipeExpressDomain.BuyList.Services;
 using RecipeExpressDomain.Client.Commands;
-using RecipeExpressDomain.Client.Commands.Requests;
-using RecipeExpressDomain.Client.Entities;
 using RecipeExpressDomain.Client.Services;
 using RecipeExpressDomain.Ingredients.Commands;
 using RecipeExpressDomain.Ingredients.Commands.Requests;
@@ -37,7 +35,6 @@ namespace RecipeExpressIoC.Modules
             services.AddScoped(typeof(ILogService<>), typeof(LogService<>));
 
             services.AddScoped<IRequestHandler<AddClientCommand, c.Client>, AddClientCommandHandler>();
-            services.AddScoped<IRequestHandler<AddRecipeClientCommand, ClientRecipe>, AddRecipeClientCommandHandler>();
             services.AddScoped<IRequestHandler<AddRecipeCommand, Recipe>, AddRecipeCommandHandler>();
             services.AddScoped<IRequestHandler<CreateBuyListCommand, BuyListDocument>, CreateBuyListCommandHandler>();
             services.AddScoped<IRequestHandler<AddIngredientCommand, Ingredient>, AddIngredientCommandHandler>();

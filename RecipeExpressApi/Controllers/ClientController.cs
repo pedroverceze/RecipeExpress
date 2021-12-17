@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RecipeExpressDomain.Client.Commands;
-using RecipeExpressDomain.Client.Commands.Requests;
-using RecipeExpressDomain.Client.Entities;
+using RecipeExpressDomain.Client.Services;
+using System;
 using System.Threading.Tasks;
 using c = RecipeExpressDomain.Client.Entities;
 
@@ -15,12 +15,15 @@ namespace RecipeExpressApi.Controllers
     {
         private readonly IMediator _mediator;
         private readonly ILogger<ClientController> _logger;
+        private readonly IClientService _clientService;
 
         public ClientController(ILogger<ClientController> logger,
-                                IMediator mediator)
+                                IMediator mediator,
+                                IClientService clientService)
         {
             _logger = logger;
             _mediator = mediator;
+            _clientService = clientService;
         }
 
         [HttpPost]
@@ -34,15 +37,12 @@ namespace RecipeExpressApi.Controllers
             return CreatedAtAction(nameof(Post), req);
         }
 
-        [HttpPost("Recipe")]
-        public async Task<IActionResult> EnrollRecipe(ClientRecipe clientRecipe)
+        [HttpPost]
+        public async Task<IActionResult> AddRecipe(Guid recipeId, Guid clientId)
         {
-            _logger.LogInformation("Recebendo requisição...");
+            await _clientService.AddRecipe(recipeId, clientId);
 
-            var command = new AddRecipeClientCommand(clientRecipe);
-            await _mediator.Send(command);
-
-            return CreatedAtAction(nameof(Post), clientRecipe); ;
+            return CreatedAtAction(nameof(Post), recipeId);
         }
     }
 }

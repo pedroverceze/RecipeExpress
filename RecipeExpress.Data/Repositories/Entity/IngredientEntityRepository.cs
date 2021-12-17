@@ -25,7 +25,7 @@ namespace RecipeExpress.Data.Repositories.Entity
 
         private IQueryable<Ingredient> Filter(string name)
         {
-            return _dbSet.Where(i => i.Name.Equals(name));
+            return  _dbSet.Where(i => i.Name.Equals(name));
         }
     }
 }

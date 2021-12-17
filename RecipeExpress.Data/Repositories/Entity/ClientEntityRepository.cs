@@ -2,6 +2,7 @@
 using RecipeExpressDomain.Client.Entities;
 using RecipeExpressDomain.Client.Repositories;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace RecipeExpress.Data.Repositories.Mongo
@@ -11,15 +12,28 @@ namespace RecipeExpress.Data.Repositories.Mongo
         public ClientEntityRepository(Context.Context context) : base(context)
         { }
 
-        public Task<Client> GetClient(Guid clientId)
+        public async Task<Client> GetClient(Guid clientId)
         {
-            throw new NotImplementedException();
+            return Filter(clientId)
+                .FirstOrDefault();
         }
 
         public async Task InsertClient(Client client)
         {
+            var cli = Filter(client.ClientId);
+
+            if(cli is not null)
+            {
+                _dbSet.Append(client);
+            }
+
             await _dbSet.AddAsync(client);
             _context.SaveChanges();
+        }
+
+        private IQueryable<Client> Filter(Guid clientId)
+        {
+            return _dbSet.Where(c => c.ClientId == clientId);
         }
     }
 }

@@ -30,7 +30,6 @@ namespace RecipeExpressIoC.Modules
             services.AddScoped<IBuyListRepository, BuyListMongoRepository>();
             services.AddScoped<IClientEntityRepository, ClientEntityRepository>();
             services.AddScoped<IRecipeEntityRepository, RecipeEntityRepository>();
-            services.AddScoped<IClientRecipeRepository, ClientRecipeRepository>();
             services.AddScoped<IIngredientEntityRepository, IngredientEntityRepository>();
         }
     }
