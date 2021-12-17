@@ -50,11 +50,11 @@ CREATE TABLE LIST_INGREDIENT(
 	grams decimal
 );
 
-CREATE TABLE CLIENT_RECIPE(
-	recipe_id uniqueidentifier not null,
-	client_id uniqueidentifier not null,
-	createdAt datetime not null
+CREATE TABLE CLIENTRECIPE(
+	RecipesRecipeId uniqueidentifier not null,
+	ClientsClientId uniqueidentifier not null,
 	);
+
 
 CREATE TABLE DIFFICULT(
 	difficult_id int identity primary key,
@@ -67,14 +67,14 @@ CREATE TABLE LOG(
 	logMessage varchar(1000) not null
 ) 
 
-ALTER TABLE CLIENT_RECIPE
+ALTER TABLE CLIENTRECIPE
 ADD CONSTRAINT FK_RECIPE_ID
-FOREIGN KEY (recipe_id)
+FOREIGN KEY (RecipesRecipeId)
 REFERENCES RECIPE(recipe_id);
 
-ALTER TABLE CLIENT_RECIPE
+ALTER TABLE CLIENTRECIPE
 ADD CONSTRAINT FK_CLIENT_ID
-FOREIGN KEY (client_id)
+FOREIGN KEY (ClientsClientId)
 REFERENCES CLIENT(client_id);
 
 ALTER TABLE RECIPE
