@@ -3,7 +3,7 @@ using RecipeExpressDomain.Recipes.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace RecipeExpressDomain.Client.Entities
+namespace RecipeExpressDomain.Clients.Entities
 {
     public class Client : EntityBase
     {

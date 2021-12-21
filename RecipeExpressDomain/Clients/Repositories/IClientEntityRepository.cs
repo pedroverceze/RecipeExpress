@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using c = RecipeExpressDomain.Client.Entities;
+using c = RecipeExpressDomain.Clients.Entities;
 
 namespace RecipeExpressDomain.Client.Repositories
 {

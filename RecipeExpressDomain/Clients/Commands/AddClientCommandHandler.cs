@@ -3,7 +3,7 @@ using RecipeExpressDomain.Client.Services;
 using RecipeExpressDomain.Configurations.Commands;
 using System.Threading;
 using System.Threading.Tasks;
-using c = RecipeExpressDomain.Client.Entities;
+using c = RecipeExpressDomain.Clients.Entities;
 
 namespace RecipeExpressDomain.Client.Commands
 {

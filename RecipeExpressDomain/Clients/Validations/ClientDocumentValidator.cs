@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using c = RecipeExpressDomain.Client.Entities;
+using c = RecipeExpressDomain.Clients.Entities;
 
 
 namespace RecipeExpressDomain.Client.Validations

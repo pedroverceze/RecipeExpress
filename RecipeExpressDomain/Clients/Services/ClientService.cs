@@ -1,11 +1,10 @@
-﻿using RecipeExpressDomain.Client.Entities;
-using RecipeExpressDomain.Client.Repositories;
+﻿using RecipeExpressDomain.Client.Repositories;
 using RecipeExpressDomain.Recipes.Entities;
 using RecipeExpressDomain.Recipes.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using c = RecipeExpressDomain.Client.Entities;
+using c = RecipeExpressDomain.Clients.Entities;
 
 namespace RecipeExpressDomain.Client.Services
 {

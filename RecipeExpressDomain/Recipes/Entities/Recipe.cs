@@ -1,9 +1,9 @@
 ﻿using RecipeExpressDomain.Abstract.Entities;
 using RecipeExpressDomain.Abstract.Enums;
-using RecipeExpressDomain.Client.Entities;
+using RecipeExpressDomain.Clients.Entities;
 using System;
 using System.Collections.Generic;
-using c = RecipeExpressDomain.Client.Entities;
+using c = RecipeExpressDomain.Clients.Entities;
 
 namespace RecipeExpressDomain.Recipes.Entities
 {

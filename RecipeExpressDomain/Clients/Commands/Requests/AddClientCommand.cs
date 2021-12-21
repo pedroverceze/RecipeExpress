@@ -2,7 +2,7 @@
 using FluentValidation.Results;
 using RecipeExpressDomain.Client.Validations;
 using RecipeExpressDomain.Configurations.Commands;
-using c = RecipeExpressDomain.Client.Entities;
+using c = RecipeExpressDomain.Clients.Entities;
 
 
 namespace RecipeExpressDomain.Client.Commands

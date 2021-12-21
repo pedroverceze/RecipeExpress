@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RecipeExpressDomain.Client.Commands;
 using RecipeExpressDomain.Client.Services;
+using RecipeExpressDomain.Clients.Entities;
 using System;
 using System.Threading.Tasks;
-using c = RecipeExpressDomain.Client.Entities;
+using c = RecipeExpressDomain.Clients.Entities;
 
 namespace RecipeExpressApi.Controllers
 {
@@ -44,6 +45,14 @@ namespace RecipeExpressApi.Controllers
             await _clientService.AddRecipe(recipeId, clientId);
 
             return CreatedAtAction(nameof(Post), recipeId);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetClient(Guid clientId)
+        {
+            var result = await _clientService.GetClient(clientId);
+
+            return Ok(result);
         }
     }
 }

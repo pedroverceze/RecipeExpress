@@ -4,6 +4,7 @@ using RecipeExpressDomain.BuyList.Repositories;
 using RecipeExpressDomain.Client.Services;
 using System;
 using System.Threading.Tasks;
+using c = RecipeExpressDomain.Clients.Entities;
 
 namespace RecipeExpressDomain.BuyList.Services
 {
@@ -24,7 +25,7 @@ namespace RecipeExpressDomain.BuyList.Services
             return await _buyListRepository.GetBuyList(clientId);
         }
 
-        public Task<BuyListDocument> RegisterBuyList(CreateBuyListDto createBuyListDto)
+        public Task<BuyListDocument> RegisterBuyList(c.Client client)
         {
             throw new NotImplementedException();
         }

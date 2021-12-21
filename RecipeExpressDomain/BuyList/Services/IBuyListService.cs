@@ -1,13 +1,13 @@
 ﻿using RecipeExpressDomain.BuyList.Documents;
-using RecipeExpressDomain.BuyList.Documents.Request;
 using System;
 using System.Threading.Tasks;
+using c = RecipeExpressDomain.Clients.Entities;
 
 namespace RecipeExpressDomain.BuyList.Services
 {
     public interface IBuyListService
     {
         Task<BuyListDocument> GetBuyList(Guid clientId);
-        Task<BuyListDocument> RegisterBuyList(CreateBuyListDto createBuyListDto);
+        Task<BuyListDocument> RegisterBuyList(c.Client client);
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using RecipeExpressIoC;
+using System.Text.Json.Serialization;
 
 namespace RecipeExpressApi
 {
@@ -23,7 +24,8 @@ namespace RecipeExpressApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMediatR(typeof(Startup));
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(
+                op => op.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             services.ConfigureContainer(_configuration);
             services.AddSwaggerGen(c =>
             {

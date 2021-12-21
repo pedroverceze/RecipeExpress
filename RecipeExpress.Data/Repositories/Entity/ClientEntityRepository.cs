@@ -1,9 +1,10 @@
 ﻿using RecipeExpress.Data.Repositories.Entity;
-using RecipeExpressDomain.Client.Entities;
+using RecipeExpressDomain.Clients.Entities;
 using RecipeExpressDomain.Client.Repositories;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace RecipeExpress.Data.Repositories.Mongo
 {
@@ -15,6 +16,7 @@ namespace RecipeExpress.Data.Repositories.Mongo
         public async Task<Client> GetClient(Guid clientId)
         {
             return Filter(clientId)
+                .Include(r => r.Recipes)
                 .FirstOrDefault();
         }
 

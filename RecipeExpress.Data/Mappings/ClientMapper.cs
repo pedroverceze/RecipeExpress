@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using RecipeExpressDomain.Client.Entities;
+using RecipeExpressDomain.Clients.Entities;
+using RecipeExpressDomain.Recipes.Entities;
 
 namespace RecipeExpress.Data.Mappings
 {
@@ -12,11 +13,12 @@ namespace RecipeExpress.Data.Mappings
 
             builder.HasKey(s => s.ClientId);
 
-            builder.Property(b => b.ClientId).HasColumnName("client_id").IsRequired();
-            builder.Property(b => b.Name).HasColumnName("client_name").IsRequired();
-            builder.Property(b => b.Age).HasColumnName("client_age").IsRequired();
-            builder.Property(b => b.Genre).HasColumnName("client_genre").IsRequired();
-            builder.Property(b => b.CreatedAt).HasColumnName("createdAt").IsRequired();
+            builder.Property(c => c.ClientId).HasColumnName("client_id").IsRequired();
+            builder.Property(c => c.Name).HasColumnName("client_name").IsRequired();
+            builder.Property(c => c.Age).HasColumnName("client_age").IsRequired();
+            builder.Property(c => c.Genre).HasColumnName("client_genre").IsRequired();
+            builder.Property(c => c.CreatedAt).HasColumnName("createdAt").IsRequired();
+            //builder.HasOne(c => c.Recipes).WithMany().HasForeignKey<Client, Recipe>
         }
     }
 }

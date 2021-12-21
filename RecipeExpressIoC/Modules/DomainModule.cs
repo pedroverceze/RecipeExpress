@@ -3,9 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RecipeExpress.Data.Repositories.Entity;
 using RecipeExpressDomain.Abstract.Log;
-using RecipeExpressDomain.BuyList.Commands;
-using RecipeExpressDomain.BuyList.Commands.Requests;
-using RecipeExpressDomain.BuyList.Documents;
 using RecipeExpressDomain.BuyList.Services;
 using RecipeExpressDomain.Client.Commands;
 using RecipeExpressDomain.Client.Services;
@@ -18,7 +15,7 @@ using RecipeExpressDomain.Recipes.Commands;
 using RecipeExpressDomain.Recipes.Commands.Requests;
 using RecipeExpressDomain.Recipes.Entities;
 using RecipeExpressDomain.Recipes.Services;
-using c = RecipeExpressDomain.Client.Entities;
+using c = RecipeExpressDomain.Clients.Entities;
 
 namespace RecipeExpressIoC.Modules
 {
@@ -36,7 +33,6 @@ namespace RecipeExpressIoC.Modules
 
             services.AddScoped<IRequestHandler<AddClientCommand, c.Client>, AddClientCommandHandler>();
             services.AddScoped<IRequestHandler<AddRecipeCommand, Recipe>, AddRecipeCommandHandler>();
-            services.AddScoped<IRequestHandler<CreateBuyListCommand, BuyListDocument>, CreateBuyListCommandHandler>();
             services.AddScoped<IRequestHandler<AddIngredientCommand, Ingredient>, AddIngredientCommandHandler>();
         }
     }
