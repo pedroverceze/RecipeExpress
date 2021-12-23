@@ -1,19 +1,22 @@
 # RecipeExpress is an app that you can register recipes and the buy list is generated automatically
-#This api is a command api, so only command services were implemented using Mongo DB, the Query API Will be implemented soon!
 
-.net5.0 Command API
+The folders are separated based on business rules, Recipe, Client, etc..
 
-- .NetCore
+net6.0 WebApi
+
 - Swagger
 - Dependency Injection
 - Mongo DB
+- EF Core with SQL Server
 - MediaTr
 - Fluent Validation
+- Unitary tests (xUnit)
 
 obs:
 
-To run the application properly: 
+##To run the application properly: 
 
-- install .net v5.0
-- run the docker/docker-compose.yaml (docker-compose up -d)
-
+- install .net v6.0
+- install Docker
+- run the docker-compose.yaml (docker-compose up -d) in docker folder RecipeExpress/docker/
+- To create the database use the script inside on folder RecipeExpress/docker/sql/  (user:sa password:Pedro123)
