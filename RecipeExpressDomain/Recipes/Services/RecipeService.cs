@@ -14,12 +14,11 @@ namespace RecipeExpressDomain.Recipes.Services
             _recipeEntityRepository = recipeEntityRepository;
         }
 
-        public async Task EnrollRecipe(Recipe recipe)
+        public async Task EnrollRecipe(IRecipe recipe)
         {
             try
             {
                 await _recipeEntityRepository.InsertRecipe(recipe);
-                //TODO: resolver insert de recipe 
             }
             catch (Exception ext)
             {

@@ -6,7 +6,7 @@ namespace RecipeExpressDomain.Recipes.Services
 {
     public interface IRecipeService
     {
-        Task EnrollRecipe(Recipe recipe);
+        Task EnrollRecipe(IRecipe recipe);
         Task<Recipe> GetRecipe(Guid recipeId);
     }
 }

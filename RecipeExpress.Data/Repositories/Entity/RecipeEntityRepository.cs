@@ -18,9 +18,9 @@ namespace RecipeExpress.Data.Repositories.Entity
                    .FirstOrDefault();
         }
 
-        public async Task InsertRecipe(Recipe recipe)
+        public async Task InsertRecipe(IRecipe recipe)
         {
-            await _dbSet.AddAsync(recipe);
+            await _dbSet.AddAsync((Recipe)recipe);
             _context.SaveChanges();
         }
 

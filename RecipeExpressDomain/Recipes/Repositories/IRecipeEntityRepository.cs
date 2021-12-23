@@ -8,6 +8,6 @@ namespace RecipeExpressDomain.Recipes.Repositories
     {
         Task<Recipe> GetRecipe(Guid id);
 
-        Task InsertRecipe(Recipe document);
+        Task InsertRecipe(IRecipe document);
     }
 }

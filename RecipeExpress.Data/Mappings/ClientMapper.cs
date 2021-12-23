@@ -18,7 +18,6 @@ namespace RecipeExpress.Data.Mappings
             builder.Property(c => c.Age).HasColumnName("client_age").IsRequired();
             builder.Property(c => c.Genre).HasColumnName("client_genre").IsRequired();
             builder.Property(c => c.CreatedAt).HasColumnName("createdAt").IsRequired();
-            //builder.HasOne(c => c.Recipes).WithMany().HasForeignKey<Client, Recipe>
         }
     }
 }

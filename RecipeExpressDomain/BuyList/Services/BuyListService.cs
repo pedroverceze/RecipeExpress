@@ -3,6 +3,8 @@ using RecipeExpressDomain.BuyList.Documents.Request;
 using RecipeExpressDomain.BuyList.Repositories;
 using RecipeExpressDomain.Client.Services;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using c = RecipeExpressDomain.Clients.Entities;
 
@@ -25,55 +27,46 @@ namespace RecipeExpressDomain.BuyList.Services
             return await _buyListRepository.GetBuyList(clientId);
         }
 
-        public Task<BuyListDocument> RegisterBuyList(c.Client client)
+        public async Task RegisterBuyList(c.Client client)
         {
-            throw new NotImplementedException();
+            var buyList = CreateBuyList(client);
+            buyList.CreatedAt = DateTime.Now;
+
+            await _buyListRepository.InsertBuyList(buyList);
         }
 
-        //public async Task<BuyListDocument> RegisterBuyList(CreateBuyListDto createBuyListDto)
-        //{
-        //    var client = await _clientService.GetClient(createBuyListDto.ClientId);
+        private BuyListDocument CreateBuyList(c.Client client)
+        {
+            var buyList = new BuyListDocument()
+            {
+                IndividualList = new List<IndividualList>()
+            };
 
-        //    var buyList = CreateBuyList(client);
-        //    buyList.CreatedAt = DateTime.Now;
-        //    buyList.ClientId = createBuyListDto.ClientId;
+            var recipes = client.Recipes;
 
-        //    await _buyListRepository.InsertBuyList(buyList);
+            //if (recipes is null || recipes.Count <= 0)
+            //{
+            //    throw new ClientWithoutRecipesException("Client have no recipes.");
+            //}
 
-        //    return buyList;
-        //}
+            //TODO: precisa adicionar os Ingredients na entidade recipe e criar o relacionamento n -> n
+            //var total = recipes.SelectMany(x => x.Ingredients)
+            //.GroupBy(i => i.Name)
+            //.Select(g => new { Name = g.Key, Grams = g.Sum(x => x.), Amount = g.Sum(x => x.Amount) }).ToList();
 
-        //private BuyListDocument CreateBuyList(c.Client client)
-        //{
-        //    var buyList = new BuyListDocument()
-        //    {
-        //        IndividualList = new List<IndividualList>()
-        //    };
+            //foreach (var item in total)
+            //{
+            //    var individual = new IndividualList
+            //    {
+            //        Name = item.Name,
+            //        Amount = item.Amount,
+            //        Grams = item.Grams
+            //    };
 
-        //    var recipes = client.Recipes;
+            //    buyList.IndividualList.Add(individual);
+            //};
 
-        //    if (recipes is null || recipes.Count <= 0)
-        //    {
-        //        throw new ClientWithoutRecipesException("Client have no recipes.");
-        //    }
-
-        //    var total = recipes.SelectMany(x => x.Ingredients)
-        //    .GroupBy(i => i.Name)
-        //    .Select(g => new { Name = g.Key, Grams = g.Sum(x => x.Grams), Amount = g.Sum(x => x.Amount) }).ToList();
-
-        //    foreach (var item in total)
-        //    {
-        //        var individual = new IndividualList
-        //        {
-        //            Name = item.Name,
-        //            Amount = item.Amount,
-        //            Grams = item.Grams
-        //        };
-
-        //        buyList.IndividualList.Add(individual);
-        //    };
-
-        //    return buyList;
-        //}
+            return buyList;
+        }
     }
 }
