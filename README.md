@@ -14,7 +14,7 @@ net6.0 WebApi
 
 obs:
 
-##To run the application properly: 
+## To run the application properly: 
 
 - install .net v6.0
 - install Docker
