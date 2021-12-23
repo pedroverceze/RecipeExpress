@@ -2,8 +2,9 @@
 
 The folders are separated based on business rules, Recipe, Client, etc..
 
-net6.0 WebApi
+## main technologies
 
+- net6.0 WebApi
 - Swagger
 - Dependency Injection
 - Mongo DB
@@ -11,8 +12,6 @@ net6.0 WebApi
 - MediaTr
 - Fluent Validation
 - Unitary tests (xUnit)
-
-obs:
 
 ## To run the application properly: 
 
