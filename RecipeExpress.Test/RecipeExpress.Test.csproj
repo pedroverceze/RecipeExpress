@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Buylists\**" />
+    <Compile Remove="Clients\**" />
+    <EmbeddedResource Remove="Buylists\**" />
+    <EmbeddedResource Remove="Clients\**" />
+    <None Remove="Buylists\**" />
+    <None Remove="Clients\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.17.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
     <PackageReference Include="Moq" Version="4.16.1" />
@@ -16,12 +25,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Buylists\" />
-    <Folder Include="Clients\" />
-    <Folder Include="Ingredients\" />
   </ItemGroup>
 
   <ItemGroup>

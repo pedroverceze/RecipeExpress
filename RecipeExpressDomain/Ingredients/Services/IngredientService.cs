@@ -1,5 +1,4 @@
-﻿using RecipeExpressDomain.Abstract.Log;
-using RecipeExpressDomain.Ingredients.Entities;
+﻿using RecipeExpressDomain.Ingredients.Entities;
 using RecipeExpressDomain.Ingredients.Exceptions;
 using RecipeExpressDomain.Ingredients.Repositories;
 using System;
@@ -10,12 +9,9 @@ namespace RecipeExpressDomain.Ingredients.Services
     public class IngredientService : IIngredientService
     {
         private readonly IIngredientEntityRepository _ingredientEntityRepository;
-        private readonly ILogService<Ingredient> _logService;
-        public IngredientService(IIngredientEntityRepository ingredientEntityRepository, 
-                                ILogService<Ingredient> logService)
+        public IngredientService(IIngredientEntityRepository ingredientEntityRepository)
         {
             _ingredientEntityRepository = ingredientEntityRepository;
-            _logService = logService;
         }
 
         public async Task<Ingredient> EnrollIngredient(Ingredient ingredient)
@@ -23,9 +19,6 @@ namespace RecipeExpressDomain.Ingredients.Services
             try
             {
                 await _ingredientEntityRepository.InsertIngredient(ingredient);
-
-                await _logService.SaveLog(ingredient);
-
                 return ingredient;
             }
             catch (Exception ext)
